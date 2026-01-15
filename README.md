@@ -1,28 +1,25 @@
-# README – LAB 1: Làm quen PyTorch và Autograd
+# README – LAB 1: Thực hành PyTorch cơ bản
 
 ## 1. Công nghệ sử dụng
 
-* Python 3
-* PyTorch
-* NumPy
-* Pandas
-* Scikit-learn
-* Matplotlib (chỉ dùng khi cần trực quan hóa)
+* Ngôn ngữ: Python 3
+* Thư viện: PyTorch, NumPy, Pandas, Scikit-learn
+* Môi trường chạy: Jupyter Notebook / Google Colab / VS Code
 
 ---
 
-## 2. Nội dung và cách hoạt động từng bài
+## 2. Nội dung bài thực hành
 
-### BT1 – Tính độ dốc (đạo hàm) của đa thức
+### BT1 – Tính đạo hàm bằng PyTorch
 
 **Mô tả:**
-Cho hàm số y = 5x^5 + 6x^3 − 3x + 1. Sử dụng PyTorch để tính đạo hàm tại một điểm x cụ thể.
+Bài này yêu cầu tính độ dốc (đạo hàm) của hàm số y = 5x^5 + 6x^3 − 3x + 1 tại một điểm x cho trước.
 
-**Cách hoạt động:**
+**Cách làm:**
 
-* Khởi tạo tensor x với `requires_grad=True`.
-* Định nghĩa hàm y theo công thức đề bài.
-* Gọi `backward()` để PyTorch tự động tính dy/dx.
+* Khởi tạo biến x là tensor và bật `requires_grad=True`.
+* Khai báo hàm y theo công thức đề bài.
+* Dùng hàm `backward()` để PyTorch tự động tính đạo hàm.
 
 **Kết quả:**
 
@@ -33,84 +30,65 @@ Cho hàm số y = 5x^5 + 6x^3 − 3x + 1. Sử dụng PyTorch để tính đạo
 ### BT2 – Gradient Descent cho hàm một biến
 
 **Mô tả:**
-Cho hàm y = x^3 + 2x^2 + 5x + 1. Khởi tạo x = 2 và cập nhật x bằng Gradient Descent.
+Sử dụng Gradient Descent để cập nhật giá trị x cho hàm y = x^3 + 2x^2 + 5x + 1, với x ban đầu bằng 2.
 
-**Cách hoạt động:**
+**Cách làm:**
 
 * Khởi tạo x là tensor có `requires_grad=True`.
-* Mỗi vòng lặp:
-
-  * Tính giá trị y.
-  * Gọi `backward()` để tính gradient dy/dx.
-  * Cập nhật x theo công thức Gradient Descent.
-  * Reset gradient sau mỗi vòng.
+* Trong mỗi vòng lặp, tính y và gradient dy/dx.
+* Cập nhật x theo công thức Gradient Descent với learning rate α = 0.1.
+* Lặp lại 50 lần.
 
 **Kết quả:**
 
-* Giá trị x thay đổi dần qua 50 vòng lặp.
-* Gradient dy/dx được PyTorch tự động tính.
+* Giá trị x thay đổi dần sau mỗi vòng lặp.
+* Gradient được PyTorch tính tự động.
 
 ---
 
 ### BT3 – Hồi quy tuyến tính với dữ liệu giả lập
 
 **Mô tả:**
-Tạo dữ liệu giả lập với x là số giờ học (1–10) và y = 3x + 5 + noise. Huấn luyện mô hình y = wx + b.
+Tạo dữ liệu giả lập với x là số giờ học (từ 1 đến 10), y được tính theo công thức y = 3x + 5 + noise.
 
-**Cách hoạt động:**
+**Cách làm:**
 
 * Sinh dữ liệu x, y và noise ngẫu nhiên.
-* Khởi tạo w và b với `requires_grad=True`.
-* Dùng hàm mất mát MSE.
+* Khởi tạo tham số w và b ngẫu nhiên với `requires_grad=True`.
+* Sử dụng hàm mất mát MSE.
 * Áp dụng Gradient Descent để cập nhật w và b trong 100 vòng lặp.
 
 **Kết quả:**
 
-* Loss giảm dần theo số vòng lặp.
-* Giá trị w xấp xỉ 3 và b xấp xỉ 5.
+* Giá trị loss giảm dần theo số vòng lặp.
+* Tham số w và b tiệm cận giá trị mong muốn.
 
 ---
 
-### BT4 – So sánh `torch.from_numpy` và `torch.tensor`
+### BT4 – So sánh cách tạo tensor từ NumPy
 
 **Mô tả:**
-Giải thích sự khác nhau khi tạo tensor từ NumPy.
+Bài này nhằm phân biệt hai cách chuyển mảng NumPy sang tensor PyTorch.
 
-**Cách hoạt động:**
+**Cách làm và kết quả:**
 
-* `torch.from_numpy(arr)` dùng chung vùng nhớ với NumPy.
-* `torch.tensor(arr)` tạo bản sao dữ liệu mới.
-
-**Kết quả:**
-
-* Thay đổi NumPy array sẽ làm tensor thay đổi ở trường hợp `from_numpy`.
-* Tensor không thay đổi khi dùng `torch.tensor`.
+* `torch.from_numpy(arr)`: tensor dùng chung vùng nhớ với NumPy, nên khi mảng NumPy thay đổi thì tensor cũng thay đổi.
+* `torch.tensor(arr)`: tạo tensor mới, sao chép dữ liệu nên không bị ảnh hưởng khi NumPy thay đổi.
 
 ---
 
 ### BT5 – Tạo và reshape tensor
 
 **Mô tả:**
-Tạo các tensor cơ bản và thay đổi shape.
+Thực hành tạo các tensor cơ bản và thay đổi hình dạng của tensor.
 
-**Cách hoạt động:**
+**Cách làm:**
 
-* Sử dụng `empty`, `zeros`, `ones`, `rand` để tạo tensor.
+* Tạo tensor bằng `empty`, `zeros`, `ones`, `rand`.
 * Dùng `view` và `view_as` để reshape tensor.
 
 **Kết quả:**
 
-* Tensor được tạo đúng kích thước.
-* Reshape không làm thay đổi dữ liệu bên trong.
+* Tensor được tạo và reshape đúng kích thước theo yêu cầu.
 
----
 
-## 3. Giao diện web
-
-* Không yêu cầu giao diện web cho Lab 1.
-
----
-
-## 4. Kết luận
-
-Lab 1 giúp làm quen với PyTorch, cơ chế autograd, cách tính gradient và áp dụng Gradient Descent cho các bài toán cơ bản.
