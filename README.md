@@ -6,7 +6,7 @@
 * Thư viện: PyTorch, NumPy, Pandas, Scikit-learn
 * Môi trường chạy: Jupyter Notebook / Google Colab / VS Code
 
----
+
 
 ## 2. Nội dung bài thực hành
 
@@ -25,7 +25,7 @@ Bài này yêu cầu tính độ dốc (đạo hàm) của hàm số y = 5x^5 + 
 
 * Giá trị `x.grad` chính là độ dốc của hàm tại điểm x đã chọn.
 
----
+
 
 ### BT2 – Gradient Descent cho hàm một biến
 
@@ -44,7 +44,7 @@ Sử dụng Gradient Descent để cập nhật giá trị x cho hàm y = x^3 + 
 * Giá trị x thay đổi dần sau mỗi vòng lặp.
 * Gradient được PyTorch tính tự động.
 
----
+
 
 ### BT3 – Hồi quy tuyến tính với dữ liệu giả lập
 
@@ -63,7 +63,7 @@ Tạo dữ liệu giả lập với x là số giờ học (từ 1 đến 10), y
 * Giá trị loss giảm dần theo số vòng lặp.
 * Tham số w và b tiệm cận giá trị mong muốn.
 
----
+
 
 ### BT4 – So sánh cách tạo tensor từ NumPy
 
@@ -75,7 +75,7 @@ Bài này nhằm phân biệt hai cách chuyển mảng NumPy sang tensor PyTorc
 * `torch.from_numpy(arr)`: tensor dùng chung vùng nhớ với NumPy, nên khi mảng NumPy thay đổi thì tensor cũng thay đổi.
 * `torch.tensor(arr)`: tạo tensor mới, sao chép dữ liệu nên không bị ảnh hưởng khi NumPy thay đổi.
 
----
+
 
 ### BT5 – Tạo và reshape tensor
 
